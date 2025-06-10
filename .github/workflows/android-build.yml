@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Run Expo Doctor
-        run: npx expo doctor
+        run: npx expo-doctor
         continue-on-error: true  # Since we know there are some warnings we want to handle
 
       - name: Cache Gradle packages
