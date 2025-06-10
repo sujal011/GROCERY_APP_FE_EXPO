@@ -7,12 +7,14 @@ export default function AuthLayout() {
         name="CustomerLogin"
         options={{
           headerShown: false,
+          navigationBarHidden:false,
         }}
       />
       <Stack.Screen
         name="DeliveryPartnerLogin"
         options={{
           headerShown: false,
+          navigationBarHidden:false,
         }}
       />
     </Stack>

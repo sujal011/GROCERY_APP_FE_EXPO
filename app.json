@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GROCERY_APP_FE_EXPO",
-    "slug": "Grocery App",
+    "name": "Grocery App",
+    "slug": "grocery-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,7 +10,12 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sujal.groceryapp"
+      "bundleIdentifier": "com.sujal.groceryapp",
+      "config": {
+        "googleMaps": {
+          "apiKey": "process.env.IOS_GOOGLE_MAPS_API"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +23,12 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.sujal.groceryapp",
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "config": {
+        "googleMaps": {
+          "apiKey": "process.env.ANDROID_GOOGLE_MAPS_API"
+        }
+      }
     },
     "web": {
       "bundler": "metro",
@@ -35,10 +45,25 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Grocery App to use your location.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isIOSBackgroundLocationEnabled": true
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "19bfb58a-d9d7-4e43-934f-caa0f2a52990"
+      }
     }
   }
 }
