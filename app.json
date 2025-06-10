@@ -12,9 +12,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.sujal.groceryapp",
       "config": {
-        "googleMaps": {
-          "apiKey": "process.env.IOS_GOOGLE_MAPS_API"
-        }
+        "googleMapsApiKey": "process.env.IOS_GOOGLE_MAPS_API"
       }
     },
     "android": {
