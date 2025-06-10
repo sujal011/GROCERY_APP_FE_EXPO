@@ -7,8 +7,6 @@ import { Alert } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
-
-
 export default function RootLayout() {
   const router = useRouter()
   const [fontsLoaded, error] = useFonts({
@@ -21,7 +19,6 @@ export default function RootLayout() {
 
   useEffect(() => {
     async function getCurrentLocation() {
-      
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert('Permission to access location was denied');
@@ -34,21 +31,18 @@ export default function RootLayout() {
   
   useEffect(() => {
     if (fontsLoaded || error) {
-      router.replace('/ProductDashboard')
+      SplashScreen.hideAsync();
     }
   }, [fontsLoaded, error])
-
-  
 
   if (!fontsLoaded && !error) return null;
 
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="index"
         options={{
           headerShown: false,
-          navigationBarHidden: false,
         }}
       />
       <Stack.Screen
