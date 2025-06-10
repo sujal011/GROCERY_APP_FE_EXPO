@@ -5,7 +5,8 @@ import { useAuthStore } from "@/state/authStore";
 import { tokenStorage } from "@/state/storage";
 import { jwtDecode } from "jwt-decode";
 import { Alert } from "react-native";
-import { refetchUser, refresh_token } from "@/services/authService";
+import { refetchUser } from "@/services/authService";
+import { refresh_token } from '@/services/apiInterceptors';
 
 interface DecodedToken{
     exp:number,
