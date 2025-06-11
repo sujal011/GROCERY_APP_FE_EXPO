@@ -72,6 +72,9 @@ jobs:
       - name: Run Expo Prebuild
         run: npx expo prebuild --platform android
 
+      - name: Enable Gradle Caching
+        run: echo "org.gradle.caching=true" >> android/gradle.properties
+
       - name: Build Android Debug APK
         run: |
           cd android

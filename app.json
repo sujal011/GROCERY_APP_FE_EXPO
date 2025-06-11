@@ -48,7 +48,7 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow Grocery App to use your location.",
+          "locationAlwaysAndWhenInUsePermission": "Allow Grocery App to use your location. ",
           "isAndroidBackgroundLocationEnabled": true,
           "isIOSBackgroundLocationEnabled": true
         }
