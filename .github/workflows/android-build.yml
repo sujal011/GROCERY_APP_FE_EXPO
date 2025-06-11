@@ -3,13 +3,22 @@ name: Android Build
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'package*.json'
+      - 'app.json'
+      - 'assets/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'package*.json'
+      - 'app.json'
+      - 'assets/**'
+
 
 env:
   ANDROID_GOOGLE_MAPS_API: ${{ secrets.ANDROID_GOOGLE_MAPS_API }}
-  IOS_GOOGLE_MAPS_API: ${{ secrets.ANDROID_GOOGLE_MAPS_API }}
-  EXPO_PUBLIC_API_URL: ${{ secrets.IOS_GOOGLE_MAPS_API }}
+  IOS_GOOGLE_MAPS_API: ${{ secrets.IOS_GOOGLE_MAPS_API }}
+  EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
   EXPO_PUBLIC_WEBSOCKET_URL: ${{ secrets.EXPO_PUBLIC_WEBSOCKET_URL }}
 
 jobs:
@@ -39,7 +48,7 @@ jobs:
         run: npm ci
 
       - name: Run Expo Doctor
-        run: npx expo doctor
+        run: npx expo-doctor
         continue-on-error: true  # Since we know there are some warnings we want to handle
 
       - name: Cache Gradle packages
