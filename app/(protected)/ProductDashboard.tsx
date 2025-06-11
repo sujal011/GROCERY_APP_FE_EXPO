@@ -1,5 +1,5 @@
 import { Alert, Platform, StyleSheet, Text, Animated as RNAnimated, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { NoticeHeight, screenHeight } from '@/utils/Scaling'
 import { 
     CollapsibleContainer,
@@ -13,12 +13,12 @@ import { useAuthStore } from '@/state/authStore'
 import { reverseGeoCode } from '@/services/mapService'
 import NoticeAnimation from '@/components/dashboard/NoticeAnimation'
 import Visuals from '@/components/dashboard/Visuals'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import Feather from '@expo/vector-icons/Feather';
 import CustomText from '@/components/ui/CustomText'
 import { Fonts } from '@/utils/Constants'
 import Animated, { useAnimatedStyle, withTiming, } from 'react-native-reanimated'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const NOTICE_HEIGHT = - (NoticeHeight + 12)
 
@@ -66,10 +66,6 @@ function ProductDashboard() {
           }
     
           let location = await Location.getCurrentPositionAsync({});
-        //   setLocation({
-        //     latitude: location.coords.latitude,
-        //     longitude: location.coords.longitude,
-        //   })
         reverseGeoCode(location.coords.latitude,location.coords.longitude,setUser)
         }
         getCurrentLocation();
@@ -92,7 +88,7 @@ function ProductDashboard() {
                         gap:6,
                     }}
                 >
-                    <Feather name='arrow-up' size={RFValue(16)} color='white'/>
+                    <Feather name='arrow-up' size={RFValue(12)} color='white'/>
                     <CustomText
                         variant='h9'
                         style={{color:'white'}}
@@ -119,7 +115,7 @@ const styles = StyleSheet.create({
     backToTopButton:{
         position:'absolute',
         alignSelf:'center',
-        top: 100,
+        top: Platform.OS === 'ios' ? screenHeight * 0.18 : 100,
         flexDirection:'row',
         alignItems:'center',
         gap:4,

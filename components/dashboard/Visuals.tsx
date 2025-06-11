@@ -1,4 +1,4 @@
-import { ColorValue, Image, StyleSheet, Text, View } from 'react-native'
+import { ColorValue, Image, StyleSheet } from 'react-native'
 import React from 'react'
 import { screenHeight, screenWidth } from '@/utils/Scaling'
 import { useCollapsibleContext } from '@r0b0t3d/react-native-collapsible'
