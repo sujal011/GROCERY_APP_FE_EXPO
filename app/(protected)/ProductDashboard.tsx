@@ -1,14 +1,134 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Alert, Platform, StyleSheet, Text, Animated as RNAnimated, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { NoticeHeight, screenHeight } from '@/utils/Scaling'
+import { 
+    CollapsibleContainer,
+    CollapsibleScrollView,
+    CollapsibleHeaderContainer,
+    withCollapsibleContext,
+    useCollapsibleContext
+ } from '@r0b0t3d/react-native-collapsible'
+import * as Location from 'expo-location'
+import { useAuthStore } from '@/state/authStore'
+import { reverseGeoCode } from '@/services/mapService'
+import NoticeAnimation from '@/components/dashboard/NoticeAnimation'
+import Visuals from '@/components/dashboard/Visuals'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Feather from '@expo/vector-icons/Feather';
+import CustomText from '@/components/ui/CustomText'
+import { Fonts } from '@/utils/Constants'
+import Animated, { useAnimatedStyle, withTiming, } from 'react-native-reanimated'
+import { RFValue } from 'react-native-responsive-fontsize'
 
-const ProductDashboard = () => {
-  return (
-    <View>
-      <Text>ProductDashboard</Text>
-    </View>
-  )
+const NOTICE_HEIGHT = - (NoticeHeight + 12)
+
+function ProductDashboard() {
+    const {user,setUser} = useAuthStore()
+    const noticePosition = useRef(new RNAnimated.Value(NOTICE_HEIGHT)).current
+
+    const {scrollY, expand } = useCollapsibleContext()
+    const previousScrollY = useRef<number>(0)
+
+    const backToTopStyle = useAnimatedStyle(() => {
+        const isScrollingUp = scrollY.value < previousScrollY.current && scrollY.value > 100
+        const opacity = withTiming(isScrollingUp ? 1 : 0, {duration:300})
+        const translateY = withTiming(isScrollingUp ? 0 : 10, {duration:300})
+
+        previousScrollY.current = scrollY.value
+        return {
+            opacity,
+            transform:[{translateY}]
+        }
+    })
+
+    function slideUp(){
+        RNAnimated.timing(noticePosition,{
+            toValue:NOTICE_HEIGHT,
+            duration:800,
+            useNativeDriver:false
+        }).start()
+    }
+    function slideDown(){
+        RNAnimated.timing(noticePosition,{
+            toValue:0,
+            duration:800,
+            useNativeDriver:false
+        }).start()
+    }
+    
+    useEffect(() => {
+        async function getCurrentLocation() {
+          
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== 'granted') {
+            Alert.alert('Permission to access location was denied');
+            return;
+          }
+    
+          let location = await Location.getCurrentPositionAsync({});
+        //   setLocation({
+        //     latitude: location.coords.latitude,
+        //     longitude: location.coords.longitude,
+        //   })
+        reverseGeoCode(location.coords.latitude,location.coords.longitude,setUser)
+        }
+        getCurrentLocation();
+      }, []);
+    return(
+        <NoticeAnimation noticePosition={noticePosition}>
+            <>
+            <Visuals />
+            <SafeAreaView />
+
+            <Animated.View style={[styles.backToTopButton,backToTopStyle]}>
+                <TouchableOpacity
+                    onPress={()=>{
+                        scrollY.value = 0;
+                        expand()
+                    }}
+                    style={{
+                        flexDirection:'row',
+                        alignItems:'center',
+                        gap:6,
+                    }}
+                >
+                    <Feather name='arrow-up' size={RFValue(16)} color='white'/>
+                    <CustomText
+                        variant='h9'
+                        style={{color:'white'}}
+                        fontFamily={Fonts.SemiBold}
+                    >
+                        Back to top
+                    </CustomText>
+                </TouchableOpacity>
+
+            </Animated.View>
+            </>
+        </NoticeAnimation>
+    )
 }
 
-export default ProductDashboard
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    panelContainer:{
+        flex:1,
+    },
+    transparent:{
+        backgroundColor:'transparent',
+    },
+    backToTopButton:{
+        position:'absolute',
+        alignSelf:'center',
+        top: 100,
+        flexDirection:'row',
+        alignItems:'center',
+        gap:4,
+        backgroundColor:'black',
+        borderRadius:20,
+        paddingHorizontal:10,
+        paddingVertical:5,
+        zIndex:1000
+    }
+})
+
+export default withCollapsibleContext(ProductDashboard)
