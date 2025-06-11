@@ -60,6 +60,8 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
+            android/.gradle
+            android/build
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
@@ -97,4 +99,4 @@ jobs:
       # Optional: Add a step to run type checking
       - name: Type Check
         run: npx tsc --noEmit
-        continue-on-error: true 
+        continue-on-error: true
