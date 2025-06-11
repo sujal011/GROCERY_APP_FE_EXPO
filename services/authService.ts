@@ -2,7 +2,6 @@ import { Alert } from "react-native";
 import axios from "axios";
 import { tokenStorage } from "@/state/storage";
 import { useAuthStore } from "@/state/authStore";
-import { useRouter } from "expo-router";
 import { appAxios } from "./apiInterceptors";
 
 export async function customerLogin(phone:string){

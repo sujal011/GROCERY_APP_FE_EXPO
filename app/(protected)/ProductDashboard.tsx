@@ -1,4 +1,4 @@
-import { Alert, Platform, StyleSheet, Text, Animated as RNAnimated, TouchableOpacity, View } from 'react-native'
+import { Alert, Platform, StyleSheet, Text, Animated as RNAnimated, TouchableOpacity, View, SafeAreaView } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { NoticeHeight, screenHeight } from '@/utils/Scaling'
 import { 
@@ -18,7 +18,6 @@ import CustomText from '@/components/ui/CustomText'
 import { Fonts } from '@/utils/Constants'
 import Animated, { useAnimatedStyle, withTiming, } from 'react-native-reanimated'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 const NOTICE_HEIGHT = - (NoticeHeight + 12)
 

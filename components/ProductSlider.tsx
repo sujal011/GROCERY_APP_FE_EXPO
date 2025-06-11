@@ -14,10 +14,11 @@ const MemoizedRow = React.memo(({row,rowIndex}:{row:typeof imageData;rowIndex:nu
                         <Image source={image} style={styles.image} />
                     </View>
                 )
-})}
+            })}
         </View>
     )
-})
+});
+MemoizedRow.displayName = 'MemoizedRow';
 
 
 const ProductSlider = () => {
@@ -30,7 +31,7 @@ const ProductSlider = () => {
     },[])
   return (
     <View pointerEvents='none'>
-      <AutoScroll duration={100000} endPaddingWidth={0} style={StyleSheet.autoScroll}>
+      <AutoScroll duration={100000} endPaddingWidth={0} style={styles.autoScroll}>
             <View style={styles.autoScrollContainer}>
                 {rows.map((row, index) => (
                     <MemoizedRow key={index} row={row} rowIndex={index}/>

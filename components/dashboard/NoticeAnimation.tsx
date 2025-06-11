@@ -1,5 +1,5 @@
 import { NoticeHeight } from '@/utils/Scaling'
-import { View, Text, StyleSheet, Animated } from 'react-native'
+import { View, StyleSheet, Animated } from 'react-native'
 import React from 'react'
 import Notice from './Notice'
 const NOTICE_HEIGHT = -(NoticeHeight + 12)
