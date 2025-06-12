@@ -1,16 +1,19 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, SafeAreaView } from 'react-native'
 import React from 'react'
 import { NoticeHeight } from '@/utils/Scaling'
 import CustomText from '../ui/CustomText';
 import { Fonts } from '@/utils/Constants';
 import { Defs, G, Path, Svg, Use } from 'react-native-svg';
 import { wavyData } from '@/utils/dummyData';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function Notice() {
+    const insets = useSafeAreaInsets()
     return (
         <View style={{ height: NoticeHeight, width: '100%', overflow: 'hidden' }}>
             <View style={styles.container}>
                 <View style={styles.noticeContainer}>
+                    <SafeAreaView style={{padding:10,paddingTop:insets?.top || 20}}>
                     <CustomText
                         style={styles.heading}
                         variant='h6'
@@ -24,6 +27,7 @@ export default function Notice() {
                     >
                         Our delivery partners may take longer to reach you.
                     </CustomText>
+                    </SafeAreaView>
                 </View>
             </View>
             <Svg
@@ -48,8 +52,9 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#CCD5E4',
         width: '100%'
-    },
+    },    
     noticeContainer: {
+        
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#CCD5E4',
