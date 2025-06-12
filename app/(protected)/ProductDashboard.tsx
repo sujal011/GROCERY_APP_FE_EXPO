@@ -92,9 +92,9 @@ function ProductDashboard() {
               gap: 6,
             }}
           >
-            <Feather name="arrow-up" size={RFValue(12)} color="white" />
+            <Feather name="arrow-up" size={RFValue(13)} color="white" />
             <CustomText
-              fontSize={RFValue(7)}
+              fontSize={RFValue(8)}
               style={{ color: "white" }}
               fontFamily={Fonts.SemiBold}
             >
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   backToTopButton: {
     position: "absolute",
     alignSelf: "center",
-    top: Platform.OS === "ios" ? screenHeight * 0.18 : 100,
+    bottom: Platform.OS === "ios" ? screenHeight * 0.18 : 100,
     flexDirection: "row",
     alignItems: "center",
     gap: 4,

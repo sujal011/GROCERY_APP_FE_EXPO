@@ -3,6 +3,7 @@ import axios from "axios";
 import { tokenStorage } from "@/state/storage";
 import { useAuthStore } from "@/state/authStore";
 import { appAxios } from "./apiInterceptors";
+import { BASE_URL } from "./config";
 
 export async function customerLogin(phone:string){
     try{
@@ -49,7 +50,7 @@ export async function refetchUser(setUser:any){
 
 export async function updateUserLocation(data:any,setUser:any){
     try {
-        const response = await appAxios.post(`/user/location`,data)
+        const response = await appAxios.patch(`${BASE_URL}/user`,data)
         setUser(response.data.user)
     } catch (error:any) {
         console.log('update user location error',error)
