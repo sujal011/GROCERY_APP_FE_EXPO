@@ -1,4 +1,4 @@
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from "react";
@@ -8,7 +8,6 @@ import { Alert } from "react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const router = useRouter()
   const [fontsLoaded, error] = useFonts({
     'Okra-Bold': require('../assets/fonts/Okra-Bold.ttf'),
     'Okra-Medium': require('../assets/fonts/Okra-Medium.ttf'),

@@ -77,7 +77,7 @@ export default function CustomerLogin() {
   }
   return (
     <GestureHandlerRootView style={styles.container}>
-      <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+      <SafeAreaView style={styles.container} edges={['top','bottom']}>
 
         <ProductSlider />
         <PanGestureHandler onHandlerStateChange={handleGesture}>
@@ -87,6 +87,7 @@ export default function CustomerLogin() {
             keyboardDismissMode='on-drag'
             keyboardShouldPersistTaps='handled'
             contentContainerStyle={styles.subContainer}>
+              <View style={{position:'absolute',bottom:"0.5%"}}>
 
             <LinearGradient colors={bottomColors} style={styles.gradient} />
               <View style={styles.content}>
@@ -119,6 +120,7 @@ export default function CustomerLogin() {
                   title="Continue"
                 />
               </View>
+              </View>
           </Animated.ScrollView>
         </PanGestureHandler>
         <View style={[styles.footer, { paddingBottom: insets.bottom }]}>
@@ -127,7 +129,7 @@ export default function CustomerLogin() {
           </CustomText>
         </View>
         <TouchableOpacity style={styles.riderIcon} onPress={()=>router.navigate('/DeliveryPartnerLogin')}>
-          <MaterialIcons name="delivery-dining" size={RFValue(35)} color="black" />
+          <MaterialIcons name="delivery-dining" size={RFValue(30)} color="black" />
         </TouchableOpacity>
       </SafeAreaView >
     </GestureHandlerRootView>
@@ -142,7 +144,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20
+    marginBottom: 20,
+    position:"relative"
   },
   footer: {
     borderTopWidth: 1,
@@ -184,8 +187,8 @@ const styles = StyleSheet.create({
   },
   riderIcon:{
     position:'absolute',
-    height:65,
-    width:65,
+    height:50,
+    width:50,
     justifyContent:'center',
     alignItems:'center',
     borderRadius:35,

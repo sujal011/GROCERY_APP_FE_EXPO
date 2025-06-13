@@ -14,14 +14,14 @@ const CategoryContainer = ({data}:{data:any}) => {
             <>
             {items?.map((item,index)=>{
                 return (
-                    <ScalePress key={index} style={styles.item} onPress={()=>router.navigate("ProductCategories")}>
+                    <ScalePress key={index} style={styles.item} onPress={()=>router.navigate("/ProductCategories")}>
 
                         <View style={styles.imageContainer}>
                             <Image source={item?.image} style={styles.image} />
 
                         </View>
                         <CustomText style={styles.text} fontSize={RFValue(8)} fontFamily={Fonts.Medium} >
-                                {item?.name}
+                                <Text>{item?.name}</Text>
                         </CustomText>
 
                     </ScalePress>
