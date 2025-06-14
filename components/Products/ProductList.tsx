@@ -15,7 +15,7 @@ return (
         data={data}
         keyExtractor={item=>item._id} 
         renderItem={renderItem}
-        style={styles.conntainer}
+        style={styles.container}
         contentContainerStyle={styles.content}
         numColumns={2}
    />
@@ -25,13 +25,15 @@ return (
 export default ProductList
 
 const styles = StyleSheet.create({
-    conntainer:{
+    container:{
         flex:1,
         height:'100%',
+        width:'76%',
         backgroundColor:Colors.backgroundSecondary
     },
     content:{
-        paddingVertical:10,
-        paddingBottom:100 
+        marginVertical:10,
+        marginHorizontal:10,
+        paddingBottom:100
     }
 })

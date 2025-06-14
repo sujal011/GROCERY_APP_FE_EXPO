@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff',
         borderRightWidth:0.8,
         borderRightColor:'#eee',
-        position:'relative'
+        position:'relative',
     },
     indicator:{
         position:'absolute',

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Colors, Fonts } from '@/utils/Constants'
@@ -7,6 +7,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { useRouter } from 'expo-router'
 import CustomText from './CustomText'
 import Feather from '@expo/vector-icons/Feather'
+
 const CustomHeader = ({title,search}:{title:string,search?:boolean}) => {
   const router = useRouter()
   return (

@@ -7,9 +7,9 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Iproduct } from "@/app/(protected)/ProductCategories";
 
 const ProductItem = ({ item, index }: { item: Iproduct; index: number }) => {
-  const isSecondColumn = index % 2 !== 0;
+  // const isSecondColumn = index % 2 !== 0;
   return (
-    <View style={[styles.container, { marginRight: isSecondColumn ? 10 : 0 }]}>
+    <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: item?.image }} style={styles.image} />
       </View>
@@ -25,9 +25,9 @@ const ProductItem = ({ item, index }: { item: Iproduct; index: number }) => {
         </View>
         <CustomText
           fontFamily={Fonts.Medium}
-          variant="h8"
+          fontSize={RFValue(8)}
           numberOfLines={2}
-          style={{ marginVertical: 4 }}
+          style={{ marginVertical: 2 }}
         >
           {item.name}
         </CustomText>
@@ -35,14 +35,14 @@ const ProductItem = ({ item, index }: { item: Iproduct; index: number }) => {
           <View>
             <CustomText
               fontFamily={Fonts.Medium}
-              variant="h8"
-              style={{ opacity:0.8,textDecorationLine:'line-through' }}
+              fontSize={RFValue(9)}
+              style={{ opacity:1, }}
             >
               ₹{item?.price}
             </CustomText>
             <CustomText
               fontFamily={Fonts.Medium}
-              variant="h8"
+              fontSize={RFValue(9)}
               style={{ opacity:0.8,textDecorationLine:'line-through' }}
             >
               ₹{item?.discountPrice}
@@ -61,13 +61,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginBottom: 10,
     overflow: "hidden",
+    marginRight:10 
   },
   imageContainer: {
     height: screenHeight * 0.12,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    padding: 12,
+    padding: 8,
   },
   image: {
     height: "100%",
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between',
-    paddingVertical:10,
+    paddingVertical:8,
     marginTop:'auto'
   }
 });

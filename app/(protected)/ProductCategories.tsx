@@ -40,7 +40,6 @@ const ProductCategories = () => {
         if(data && data?.length>0){
           setSelectedCategory(data[0])
         }
-        console.log(selectedCategory);
         
         
       } catch (error: any) {
@@ -56,7 +55,6 @@ const ProductCategories = () => {
 
   useEffect(()=>{
     const fetchProducts = async(categoryId:string)=>{
-      console.log(categoryId);
       setProductsLoading(true)
       try {
         const data = await getProductsByCategories(categoryId);
@@ -81,7 +79,7 @@ const ProductCategories = () => {
       <View style={styles.subContainer}>
         {
           categoriesLoading ?
-          <ActivityIndicator size='small' color={Colors.border}/>
+          <ActivityIndicator size='small' color={Colors.border} style={{width:'24%'}}/>
           :
           <Sidebar 
             categories={categories}
@@ -112,12 +110,19 @@ export default ProductCategories
 const styles = StyleSheet.create({
   mainContainer:{
     flex:1,
-    backgroundColor:"#fff"
+    margin:0,
+    padding:0,
+    width:'100%',
+    height:'100%'
   },
   subContainer:{
     flex:1,
     flexDirection:"row",
-    alignItems:"center"
+    alignItems:"center",
+    height:"100%",
+    width:'100%',
+    position:"absolute",
+    top:'11%'
   },
   center:{
     flex:1,
