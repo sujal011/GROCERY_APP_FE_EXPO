@@ -27,6 +27,7 @@ import AnimatedHeader from "@/components/dashboard/AnimatedHeader";
 import Content from "@/components/dashboard/Content";
 import StickySearchBar from "@/components/dashboard/StickySearchBar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { withCart } from "@/components/cart/WithCart";
 
 const NOTICE_HEIGHT = -(NoticeHeight + 12);
 
@@ -167,4 +168,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withCollapsibleContext(ProductDashboard);
+export default withCart(withCollapsibleContext(ProductDashboard));

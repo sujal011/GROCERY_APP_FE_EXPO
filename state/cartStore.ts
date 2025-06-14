@@ -41,6 +41,7 @@ export const useCartStore = create<CartStore>()(
             },
             clearCart:()=>set({cart:[]}),
             removeItem:(id)=>{
+                
                 const currentCart = get().cart;
                 const existingItemIndex = currentCart.findIndex(cartItem => cartItem?._id === id)
 
@@ -56,6 +57,7 @@ export const useCartStore = create<CartStore>()(
                 }else{
                     updatedCart.splice(existingItemIndex,1)
                 }
+                set({cart:updatedCart})
                }
             },
             getItemCount:(id)=>{

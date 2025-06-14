@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from "react";
 import * as Location from 'expo-location'
 import { Alert } from "react-native";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,28 +38,30 @@ export default function RootLayout() {
   if (!fontsLoaded && !error) return null;
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen
-        name="index"
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="(auth)"
-        options={{
-          headerShown: false,
-          navigationBarHidden: false,
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name="index"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="(auth)"
+          options={{
+            headerShown: false,
+            navigationBarHidden: false,
 
-        }}
-      />
-      <Stack.Screen
-        name="(protected)"
-        options={{
-          headerShown: false,
-          navigationBarHidden: false,
-        }}
-      />
-    </Stack>
+          }}
+        />
+        <Stack.Screen
+          name="(protected)"
+          options={{
+            headerShown: false,
+            navigationBarHidden: false,
+          }}
+        />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }

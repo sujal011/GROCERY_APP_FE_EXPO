@@ -5,6 +5,7 @@ import { Colors, Fonts } from "@/utils/Constants";
 import CustomText from "../ui/CustomText";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Iproduct } from "@/app/(protected)/ProductCategories";
+import UniversalAdd from "../UniversalAdd";
 
 const ProductItem = ({ item, index }: { item: Iproduct; index: number }) => {
   // const isSecondColumn = index % 2 !== 0;
@@ -35,19 +36,20 @@ const ProductItem = ({ item, index }: { item: Iproduct; index: number }) => {
           <View>
             <CustomText
               fontFamily={Fonts.Medium}
-              fontSize={RFValue(9)}
+              fontSize={RFValue(8)}
               style={{ opacity:1, }}
             >
               ₹{item?.price}
             </CustomText>
             <CustomText
               fontFamily={Fonts.Medium}
-              fontSize={RFValue(9)}
+              fontSize={RFValue(8)}
               style={{ opacity:0.8,textDecorationLine:'line-through' }}
             >
               ₹{item?.discountPrice}
             </CustomText>
           </View>
+        <UniversalAdd item={item} />
         </View>
       </View>
     </View>

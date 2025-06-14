@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, View } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Colors, Fonts } from '@/utils/Constants'
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { RFValue } from 'react-native-responsive-fontsize'
@@ -10,9 +10,9 @@ import Feather from '@expo/vector-icons/Feather'
 
 const CustomHeader = ({title,search}:{title:string,search?:boolean}) => {
   const router = useRouter()
+  const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView>
-     <View style={styles.flexRow}>
+     <View style={[styles.flexRow,{marginTop:insets.top}]}>
       <Pressable onPress={()=> router.back()}>
       <Ionicons name='chevron-back' color={Colors.text} size={RFValue(16)}/>
       </Pressable>
@@ -31,7 +31,6 @@ const CustomHeader = ({title,search}:{title:string,search?:boolean}) => {
         }
       </View>
       </View>
-    </SafeAreaView>
   )
 }
 

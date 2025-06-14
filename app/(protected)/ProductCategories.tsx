@@ -5,6 +5,7 @@ import { Colors } from '@/utils/Constants'
 import Sidebar from '@/components/Products/Sidebar'
 import { getAllCategories, getProductsByCategories } from '@/services/productService'
 import ProductList from '@/components/Products/ProductList'
+import { withCart } from '@/components/cart/WithCart'
 
 export interface Icategory{
   _id:string;
@@ -105,7 +106,6 @@ const ProductCategories = () => {
   )
 }
 
-export default ProductCategories
 
 const styles = StyleSheet.create({
   mainContainer:{
@@ -121,8 +121,6 @@ const styles = StyleSheet.create({
     alignItems:"center",
     height:"100%",
     width:'100%',
-    position:"absolute",
-    top:'11%'
   },
   center:{
     flex:1,
@@ -130,3 +128,5 @@ const styles = StyleSheet.create({
     alignItems:"center"
   }
 })
+
+export default withCart(ProductCategories)
