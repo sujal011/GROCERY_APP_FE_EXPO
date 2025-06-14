@@ -8,11 +8,15 @@ const ProtectedLayout = () => {
         options={{
             headerShown:false
             }}/>
+        <Stack.Screen name='ProductCategories' 
+        options={{
+          headerShown:false
+        }}/>
         <Stack.Screen name='OrderPage' 
         options={{
             headerShown:false
             }}/>
-        <Stack.Screen name='ProductCategories' 
+        <Stack.Screen name='OrderSuccess' 
         options={{
             headerShown:false
             }}/>

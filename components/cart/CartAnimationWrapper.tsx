@@ -1,5 +1,6 @@
 import { Animated, StyleSheet } from 'react-native'
 import {useEffect, useRef, useState} from 'react'
+import { hocStyles } from '@/utils/Styles';
 
 interface CartAnimationWrapperProps{
     cartCount:number;
@@ -46,7 +47,7 @@ const CartAnimationWrapper = ({cartCount,children}:CartAnimationWrapperProps) =>
 
   return (
     <Animated.View
-        style={[styles.cartContainer,slideUpStyle]}
+        style={[hocStyles.cartContainer,slideUpStyle]}
     >
       {children}
     </Animated.View>
@@ -54,18 +55,3 @@ const CartAnimationWrapper = ({cartCount,children}:CartAnimationWrapperProps) =>
 }
 
 export default CartAnimationWrapper
-
-const styles = StyleSheet.create({
-    cartContainer:{
-        position:'absolute',
-        bottom:0,
-        width:'100%',
-        backgroundColor:"#fff",
-        borderTopLeftRadius:10,
-        borderTopRightRadius:10,
-        elevation:10,
-        shadowOffset:{width:1,height:1},
-        shadowOpacity:0.3,
-        shadowRadius:5
-    }
-})

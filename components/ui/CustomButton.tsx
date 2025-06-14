@@ -1,6 +1,6 @@
 import { Colors, Fonts } from '@/utils/Constants';
 import { FC } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import CustomText from './CustomText';
 
 interface CustomButtonProps {
