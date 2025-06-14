@@ -4,7 +4,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from "react";
 import * as Location from 'expo-location'
 import { Alert } from "react-native";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,7 +37,6 @@ export default function RootLayout() {
   if (!fontsLoaded && !error) return null;
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name="index"
@@ -62,6 +60,5 @@ export default function RootLayout() {
           }}
         />
       </Stack>
-    </GestureHandlerRootView>
   );
 }

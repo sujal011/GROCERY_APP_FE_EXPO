@@ -5,11 +5,11 @@ import {
   Platform,
   TouchableOpacity,
   Alert,
+  ScrollView
 } from "react-native";
 import React, { useState } from "react";
 import { Colors, Fonts } from "@/utils/Constants";
 import CustomHeader from "@/components/ui/CustomHeader";
-import { ScrollView } from "react-native-gesture-handler";
 import OrderList from "@/components/cart/OrderList";
 import CustomText from "@/components/ui/CustomText";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -32,6 +32,7 @@ const OrderPage = () => {
   const [loading, setLoading] = useState(false);
 
   const handlerPlaceOrder = async () => {
+    setCurrentOrder(null);
     if(currentOrder !== null) {
         Alert.alert("Let your first order to be delivered first", "You can only place one order at a time.");
         return;
