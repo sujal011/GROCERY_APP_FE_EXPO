@@ -3,7 +3,7 @@ import { useAuthStore } from "@/state/authStore";
 import { Colors, Fonts } from "@/utils/Constants";
 import { useRouter, useSegments } from "expo-router";
 import { FC, useEffect } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Alert, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { io } from "socket.io-client";
 import { WEBSOCKET_URl } from "@/services/config";
 import { hocStyles } from "@/utils/Styles";
@@ -18,7 +18,9 @@ const withLiveStatus = <P extends object>(WrappedComponnet: React.ComponentType<
         const routeName = useSegments()[1] //'ProductDashboard'; // Get the current route name
            useEffect(()=>{
             const fetchOrderDetails = async () => {
-                if (!currentOrder?.orderId) return;
+                if (!currentOrder?.orderId) {
+                    return;
+                }
                 try {
                     const data = await getOrderById(currentOrder.orderId);
                     if (data) {

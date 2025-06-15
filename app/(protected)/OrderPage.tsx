@@ -32,7 +32,6 @@ const OrderPage = () => {
   const [loading, setLoading] = useState(false);
 
   const handlerPlaceOrder = async () => {
-    setCurrentOrder(null);
     if(currentOrder !== null) {
         Alert.alert("Let your first order to be delivered first", "You can only place one order at a time.");
         return;
@@ -49,8 +48,9 @@ const OrderPage = () => {
     setLoading(true);
         try {
       const data = await createOrder(formattedData, totalItemPrice);
-      if (data) {
-        setCurrentOrder(data);
+      if (data.order) {
+        
+        setCurrentOrder(data.order);
         clearCart()
         router.navigate('/OrderSuccess',{...data})
       } else {
@@ -98,7 +98,7 @@ const OrderPage = () => {
               fontFamily={Fonts.SemiBold}
               numberOfLines={3}
             >
-              Orders cannit be once packed for delivery, In case of unexpected
+              Orders cannOt be once packed for delivery, In case of unexpected
               delays, refund will be initiated within 24 hours, if applicable
             </CustomText>
           </View>

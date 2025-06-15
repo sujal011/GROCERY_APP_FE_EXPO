@@ -20,7 +20,7 @@ const ProtectedLayout = () => {
         options={{
             headerShown:false
             }}/>
-        <Stack.Screen name='Livetracking' 
+        <Stack.Screen name='LiveTracking' 
         options={{
             headerShown:false
             }}/>
