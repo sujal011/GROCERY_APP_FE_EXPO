@@ -3,7 +3,7 @@ import { useAuthStore } from "@/state/authStore";
 import { Colors, Fonts } from "@/utils/Constants";
 import { useRouter, useSegments } from "expo-router";
 import { FC, useEffect } from "react";
-import { Alert, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { io } from "socket.io-client";
 import { WEBSOCKET_URl } from "@/services/config";
 import { hocStyles } from "@/utils/Styles";
