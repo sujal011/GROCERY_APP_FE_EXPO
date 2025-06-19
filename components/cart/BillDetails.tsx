@@ -43,6 +43,7 @@ const ReportItem = ({ iconName, underline, title, price }: ReportItemProps) => {
           style={{
             textDecorationLine: underline ? "underline" : "none",
             textDecorationStyle: "dashed",
+            marginBottom:3
           }}
         >
           {title}

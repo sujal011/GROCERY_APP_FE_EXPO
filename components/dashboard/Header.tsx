@@ -75,7 +75,7 @@ export default function Header({showNotice}:{showNotice:()=>void}) {
             </View>
 
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>router.push("Profile")}>
+        <TouchableOpacity onPress={()=>router.push("/Profile")}>
 
             <MaterialCommunityIcons name="account-circle-outline" size={RFValue(36)} color="#fff" />
         </TouchableOpacity>

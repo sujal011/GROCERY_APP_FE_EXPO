@@ -1,5 +1,5 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { screenHeight } from '@/utils/Scaling'
 import { Colors } from '@/utils/Constants'
 import { useMapRefStore } from '@/state/mapStore'
@@ -18,6 +18,26 @@ export interface LiveMapProps{
 
 const LiveMap = ({deliveryLocation,deliveryPersonLocation,hasAccepted,hasPickedUp,pickupLocation}:LiveMapProps) => {
     const {mapRef,setMapRef} = useMapRefStore()
+
+    useEffect(()=>{
+        if(mapRef){
+            handleFitToPath(
+                mapRef,
+                deliveryLocation,
+                pickupLocation,
+                hasPickedUp,
+                hasAccepted,
+                deliveryPersonLocation
+            )
+        }
+    },[
+        mapRef,
+        deliveryLocation,
+        deliveryPersonLocation,
+        hasAccepted,
+        hasPickedUp,
+        pickupLocation
+    ])
 
   return (
     <View style={styles.container}>

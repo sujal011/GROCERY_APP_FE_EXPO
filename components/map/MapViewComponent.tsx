@@ -37,7 +37,7 @@ const MapViewComponent = ({deliveryLocation,pickupLocation,deliveryPersonLocatio
     showsIndoorLevelPicker={false}
     >
 
-        {/* {
+        {
             deliveryPersonLocation && (hasPickedUp||hasAccepted) &&(
                 <MapViewDirections 
                 origin={deliveryPersonLocation}
@@ -51,14 +51,14 @@ const MapViewComponent = ({deliveryLocation,pickupLocation,deliveryPersonLocatio
                 }}
                 />
             )
-        } */}
+        }
         <Markers 
         deliveryLocation={deliveryLocation}
         deliveryPersonLocation={deliveryPersonLocation}
         pickupLocation={pickupLocation}
         />
 
-        {/* {!hasPickedUp && deliveryLocation && pickupLocation && (
+        {!hasPickedUp && deliveryLocation && pickupLocation && (
             <Polyline 
             coordinates={getPoints([pickupLocation,deliveryLocation])}
             strokeColor={Colors.text}
@@ -66,7 +66,7 @@ const MapViewComponent = ({deliveryLocation,pickupLocation,deliveryPersonLocatio
             geodesic={true}
             lineDashPattern={[12,10]}
             />
-        )} */}
+        )}
     </MapView>
   )
 }
