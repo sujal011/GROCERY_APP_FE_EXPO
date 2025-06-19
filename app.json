@@ -52,6 +52,13 @@
           "isAndroidBackgroundLocationEnabled": true,
           "isIOSBackgroundLocationEnabled": true
         }
+      ],
+      [
+        "expo-maps",
+        {
+          "requestLocationPermission": true,
+          "locationPermission": "Allow Grocery App to use your location"
+        }
       ]
     ],
     "experiments": {
@@ -65,4 +72,3 @@
     }
   }
 }
-

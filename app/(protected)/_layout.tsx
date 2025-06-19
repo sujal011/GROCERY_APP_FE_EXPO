@@ -24,6 +24,10 @@ const ProtectedLayout = () => {
         options={{
             headerShown:false
             }}/>
+        <Stack.Screen name='Profile' 
+        options={{
+            headerShown:false
+            }}/>
         <Stack.Screen name='(delivery)' 
         options={{
             headerShown:false

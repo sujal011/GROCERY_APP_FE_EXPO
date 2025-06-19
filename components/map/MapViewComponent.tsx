@@ -35,6 +35,7 @@ const MapViewComponent = ({deliveryLocation,pickupLocation,deliveryPersonLocatio
     showsIndoors={false}
     showsScale={false}
     showsIndoorLevelPicker={false}
+    
     >
 
         {
@@ -68,6 +69,7 @@ const MapViewComponent = ({deliveryLocation,pickupLocation,deliveryPersonLocatio
             />
         )}
     </MapView>
+    
   )
 }
 
