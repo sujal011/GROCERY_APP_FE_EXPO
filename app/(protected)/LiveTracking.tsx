@@ -51,6 +51,7 @@ const LiveTracking = () => {
           hasAccepted={currentOrder?.status === 'confirmed'}
           hasPickedUp={currentOrder?.status === 'arriving'}
         />
+        
         <View style={styles.flexRow}>
           <View style={styles.iconContainer}>
             <MaterialCommunityIcons
