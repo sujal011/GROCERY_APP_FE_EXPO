@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Colors, Fonts } from '@/utils/Constants'
@@ -14,11 +14,11 @@ interface ActionButtonProps{
 
 const ActionButton = ({icon,label,onPress}:ActionButtonProps) => {
   return (
-    <TouchableOpacity style={styles.btn}>
+    <TouchableOpacity style={styles.btn} onPress={onPress}>
         <View style={styles.iconContainer}>
-            <Ionicons name={icon} color={Colors.text} size={RFValue(12)} />
+            <Ionicons name={icon} color={Colors.text} size={RFValue(17)} />
         </View>
-        <CustomText fontSize={7} fontFamily={Fonts.Medium}>
+        <CustomText fontSize={13} fontFamily={Fonts.Medium}>
             {label}
         </CustomText>
     </TouchableOpacity>

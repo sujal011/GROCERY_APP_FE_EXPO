@@ -25,3 +25,13 @@ export const getOrderById = async(id:string)=>{
         throw error; // Propagate the error for further handling
     }
 }
+
+export const fetchCustomerOrders = async(userId:string)=>{
+    try{
+        const response = await appAxios.get(`/order?customerId=${userId}`);
+        return response.data;
+    }catch(error){
+        console.error('Error fetching your order: ', error);
+        throw error; // Propagate the error for further handling
+    }
+}
