@@ -14,7 +14,7 @@ interface DecodedToken {
 
 export default function Index() {
   const [isReady, setIsReady] = useState(false);
-  const { user, setUser } = useAuthStore();
+  const { user, setUser,setCurrentOrder } = useAuthStore();
 
   const validateAndRefreshTokens = useCallback(async () => {
     const accessToken = tokenStorage.getString('accessToken');

@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import { useAuthStore } from "@/state/authStore";
 import { getOrderById } from "@/services/orderService";
 import { useEffect } from "react";
 import { Colors, Fonts } from "@/utils/Constants";
-import LiveHeader from "@/components/map/LiveHeader";
+import LiveHeader from "@/components/liveTracking/LiveHeader";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { RFValue } from "react-native-responsive-fontsize";
 import CustomText from "@/components/ui/CustomText";
-import OrderSummary from "@/components/map/OrderSummary";
+import OrderSummary from "@/components/liveTracking/OrderSummary";
+import DeliveryDetails from "@/components/liveTracking/DeliveryDetails";
+import LiveMap from "@/components/map/LiveMap";
 
 const LiveTracking = () => {
   const { currentOrder, setCurrentOrder } = useAuthStore();
@@ -16,12 +18,9 @@ const LiveTracking = () => {
     if (!data) {
       console.error("No order data found");
       return;
+    }else{
+      setCurrentOrder(data);
     }
-    if (!data.order) {
-      console.error("Order data is missing in the response");
-      return;
-    }
-    if (data.order) setCurrentOrder(data.order);
   };
   useEffect(() => {
     fetchOrderDetails();
@@ -45,6 +44,13 @@ const LiveTracking = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
+        <LiveMap 
+          deliveryLocation={currentOrder?.deliveryLocation}
+          pickupLocation={currentOrder?.pickupLocation}
+          deliveryPersonLocation={currentOrder?.deliveryPersonLocation}
+          hasAccepted={currentOrder?.status === 'confirmed'}
+          hasPickedUp={currentOrder?.status === 'arriving'}
+        />
         <View style={styles.flexRow}>
           <View style={styles.iconContainer}>
             <MaterialCommunityIcons
@@ -56,7 +62,7 @@ const LiveTracking = () => {
           <View style={{ width: "82%" }}>
             <CustomText
               numberOfLines={1}
-              variant="h7"
+              fontSize={RFValue(9.2)}
               fontFamily={Fonts.SemiBold}
             >
               {currentOrder?.deliverypartner?.name ||
@@ -65,19 +71,21 @@ const LiveTracking = () => {
             {currentOrder?.deliveryPartner && (
               <CustomText
                 numberOfLines={1}
-                variant="h7"
+                fontSize={RFValue(8.5)}
                 fontFamily={Fonts.Medium}
               >
                 {currentOrder?.deliverypartner?.phone}
               </CustomText>
             )}
-            <CustomText variant="h9" fontFamily={Fonts.Medium}>
+            <CustomText fontSize={RFValue(9.2)} fontFamily={Fonts.Medium}>
               {currentOrder?.deliveryPartner
                 ? "For Delivery instructions you can contact Delivery Partner"
                 : msg}
             </CustomText>
           </View>
         </View>
+        
+        <DeliveryDetails details={currentOrder?.customer}/>
 
         <OrderSummary order={currentOrder}/>
 
@@ -90,10 +98,10 @@ const LiveTracking = () => {
             />
           </View>
           <View style={{ width: "82%" }}>
-            <CustomText variant='h7' fontFamily={Fonts.SemiBold}>
+            <CustomText fontSize={RFValue(10)} fontFamily={Fonts.SemiBold}>
               Do you like our app?
             </CustomText>
-            <CustomText variant='h9' fontFamily={Fonts.Medium}>
+            <CustomText fontSize={RFValue(9)} fontFamily={Fonts.Medium}>
               Rate us on Play Store and help us improve
             </CustomText>
           </View>
@@ -103,7 +111,7 @@ const LiveTracking = () => {
           variant="h6"
           style={{ opacity: 0.6, marginTop: 20 }}
         >
-          Mahavir Grocery Dellivery App
+          Mahavir Grocery Delivery App
         </CustomText>
       </ScrollView>
     </View>

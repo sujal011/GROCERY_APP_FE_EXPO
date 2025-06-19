@@ -9,12 +9,14 @@ import { WEBSOCKET_URl } from "@/services/config";
 import { hocStyles } from "@/utils/Styles";
 import CustomText from "../ui/CustomText";
 import { RFValue } from "react-native-responsive-fontsize";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const withLiveStatus = <P extends object>(WrappedComponnet: React.ComponentType<P>):FC<P> => {
 
     const WithLiveStatusComponent : FC<P> = (props)=>{
         const {currentOrder,setCurrentOrder} = useAuthStore()
         const router = useRouter()
+        const insets = useSafeAreaInsets()
         const routeName = useSegments()[1] //'ProductDashboard'; // Get the current route name
            useEffect(()=>{
             const fetchOrderDetails = async () => {
@@ -65,7 +67,7 @@ const withLiveStatus = <P extends object>(WrappedComponnet: React.ComponentType<
             <View style={styles.container}>
                 <WrappedComponnet {...props} />
                 {currentOrder && routeName === 'ProductDashboard' && (
-                    <View style={[hocStyles.cartContainer,{flexDirection:"row",alignItems:'center'}]}>
+                    <View style={[hocStyles.cartContainer,{flexDirection:"row",alignItems:'center',paddingBottom:insets.bottom}]}>
                         <View style={styles.flexRow}>
                             <View style={styles.img}>
                                 <Image

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import { useAuthStore } from "@/state/authStore";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -18,11 +18,12 @@ const LiveHeader = ({ title, type, secondTitle }: LiveHeaderProps) => {
   const isCustomer = type === "Customer";
   const { currentOrder, setCurrentOrder } = useAuthStore();
   const router = useRouter();
+  const insets = useSafeAreaInsets()
+
   return (
-    <SafeAreaView>
-      <View style={styles.headerContainer}>
+      <View style={[styles.headerContainer,{paddingTop:insets.top+6}]}>
         <Pressable
-          style={styles.backButton}
+          style={[styles.backButton,{marginTop:insets.top}]}
           onPress={() => {
             if (isCustomer) {
               router.navigate("/ProductDashboard");
@@ -37,11 +38,11 @@ const LiveHeader = ({ title, type, secondTitle }: LiveHeaderProps) => {
           <Ionicons
             name="chevron-back"
             color={isCustomer ? "#fff" : "#000"}
-            size={RFValue(16)}
+            size={RFValue(18)}
           />
         </Pressable>
         <CustomText 
-        variant="h6"
+        fontSize={RFValue(10)}
         fontFamily={Fonts.Medium}
         style={isCustomer?styles.titleTextWhite : styles.titleTextBlack}
         >
@@ -55,7 +56,6 @@ const LiveHeader = ({ title, type, secondTitle }: LiveHeaderProps) => {
             {secondTitle}
         </CustomText>
       </View>
-    </SafeAreaView>
   );
 };
 
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 10,
     alignItems: "center",
+    paddingBottom:12
   },
   backButton: {
     position: "absolute",

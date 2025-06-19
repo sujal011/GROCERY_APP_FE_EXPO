@@ -48,8 +48,8 @@ const OrderPage = () => {
     setLoading(true);
         try {
       const data = await createOrder(formattedData, totalItemPrice);
+
       if (data.order) {
-        
         setCurrentOrder(data.order);
         clearCart()
         router.navigate('/OrderSuccess',{...data})
