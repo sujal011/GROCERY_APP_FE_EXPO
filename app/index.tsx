@@ -14,7 +14,7 @@ interface DecodedToken {
 
 export default function Index() {
   const [isReady, setIsReady] = useState(false);
-  const { user, setUser,setCurrentOrder } = useAuthStore();
+  const { user, setUser } = useAuthStore();
 
   const validateAndRefreshTokens = useCallback(async () => {
     const accessToken = tokenStorage.getString('accessToken');
@@ -81,11 +81,13 @@ export default function Index() {
 
   // If not authenticated, redirect to login
   if (!accessToken || !refreshToken) {
+    console.log('No access or refresh token found, redirecting to login');
     return <Redirect href="/CustomerLogin" />;
   }
 
   // If authenticated but no user data, redirect to login
   if (!user) {
+    console.log('No user data found, redirecting to login');
     return <Redirect href="/CustomerLogin" />;
   }
 
@@ -94,6 +96,7 @@ export default function Index() {
     case 'Customer':
       return <Redirect href="/ProductDashboard" />;
     case 'Delivery':
+      console.log('Delivery role detected');
       return <Redirect href="/DeliveryDashboard" />;
     default:
       // Unknown role - clear tokens and redirect to login

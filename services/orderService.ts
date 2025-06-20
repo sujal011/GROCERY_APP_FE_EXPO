@@ -35,3 +35,22 @@ export const fetchCustomerOrders = async(userId:string)=>{
         throw error; // Propagate the error for further handling
     }
 }
+
+export const fetchDeliveryPartnerOrders = async(
+    status:string,
+    userId:string,
+    branchId:string
+)=>{
+    let uri = 
+    status === 'available'
+        ? `/order?status=${status}&branchId=${branchId}`
+        : `/order?branchId=${branchId}&deliveryPartnerId=${userId}&status=delivered`;
+
+    try {
+        const response = await appAxios.get(uri);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching delivery partner orders:', error);
+        throw error; // Propagate the error for further handling
+    }
+}

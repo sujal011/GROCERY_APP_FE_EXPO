@@ -1,4 +1,4 @@
-import { Alert, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native'
 import CustomText from '../ui/CustomText'
 import { Fonts } from '@/utils/Constants'
 import { RFValue } from 'react-native-responsive-fontsize'
@@ -6,7 +6,6 @@ import Octicons from '@expo/vector-icons/Octicons';
 import { useAuthStore } from '@/state/authStore';
 import { useRouter } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { screenHeight } from '@/utils/Scaling';
 import { useEffect } from 'react';
 import * as Location from "expo-location"
 import { reverseGeoCode } from '@/services/mapService';
