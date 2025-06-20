@@ -9,6 +9,10 @@ const ProtectedLayout = () => {
         options={{
             headerShown:false
             }}/>
+        <Stack.Screen name='DeliveryMap' 
+        options={{
+            headerShown:false
+            }}/>
     </Stack>
   )
 }
