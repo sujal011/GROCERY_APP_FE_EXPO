@@ -10,6 +10,7 @@ import { hocStyles } from "@/utils/Styles";
 import CustomText from "../ui/CustomText";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { screenHeight } from "@/utils/Scaling";
 
 const withLiveStatus = <P extends object>(WrappedComponnet: React.ComponentType<P>):FC<P> => {
 
@@ -67,7 +68,7 @@ const withLiveStatus = <P extends object>(WrappedComponnet: React.ComponentType<
             <View style={styles.container}>
                 <WrappedComponnet {...props} />
                 {currentOrder && routeName === 'ProductDashboard' && (
-                    <View style={[hocStyles.cartContainer,{flexDirection:"row",alignItems:'center',paddingBottom:insets.bottom}]}>
+                    <View style={[hocStyles.cartContainer,{flexDirection:"row",alignItems:'center',paddingBottom:insets.bottom - screenHeight*0.02}]}>
                         <View style={styles.flexRow}>
                             <View style={styles.img}>
                                 <Image
