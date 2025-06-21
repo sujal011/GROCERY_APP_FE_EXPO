@@ -1,19 +1,19 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Colors, Fonts } from "@/utils/Constants";
 import CustomText from "../ui/CustomText";
 import { formatISOToCustom } from "@/utils/DateUtils";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-interface CartItem {
+export interface CartItem {
   _id: string | number;
   item: any;
   count: number;
 }
 
-interface Order {
+export interface Order {
   orderId: string;
   items: CartItem[];
   deliveryLocation: any;
@@ -38,7 +38,7 @@ function getStatusColor(status: string) {
 }
 
 const DeliveryOrderItem = ({ item, index }: { item: Order; index: number }) => {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <View style={styles.flexRowBetween}>
@@ -46,43 +46,54 @@ const DeliveryOrderItem = ({ item, index }: { item: Order; index: number }) => {
           #{item.orderId}
         </CustomText>
         <View style={[styles.statusContainer]}>
-            <CustomText
-              fontSize={RFValue(8.5)}
-                fontFamily={Fonts.SemiBold}
-                style={[styles.statusText, { color: getStatusColor(item.status) }]}
-              >
-                {item.status}
-            </CustomText>
+          <CustomText
+            fontSize={RFValue(8.5)}
+            fontFamily={Fonts.SemiBold}
+            style={[styles.statusText, { color: getStatusColor(item.status) }]}
+          >
+            {item.status}
+          </CustomText>
         </View>
       </View>
       <View style={styles.itemsContainer}>
-        {item.items.slice(0,2).map((i,idx)=>{
-            return (
-                <CustomText fontSize={RFValue(9)} numberOfLines={1} key={idx}>
-                    {i.count}x {i.item.name}
-                </CustomText>   
-            )
+        {item.items.slice(0, 2).map((i, idx) => {
+          return (
+            <CustomText fontSize={RFValue(9)} numberOfLines={1} key={idx}>
+              {i.count}x {i.item.name}
+            </CustomText>
+          );
         })}
       </View>
-      <View style={[styles.flexRowBetween,styles.addressContainer]}>
+      <View style={[styles.flexRowBetween, styles.addressContainer]}>
         <View style={styles.addressTextContainer}>
-          <CustomText fontSize={RFValue(9)} numberOfLines={1} >
+          <CustomText fontSize={RFValue(9)} numberOfLines={1}>
             {item.deliveryLocation?.address || "----"}
           </CustomText>
-          <CustomText  style={styles.dateText}>
+          <CustomText style={styles.dateText}>
             {formatISOToCustom(item?.createdAt)}
           </CustomText>
         </View>
-       <TouchableOpacity
-       style={styles.iconContainer}
-       onPress={() => {
-            router.navigate('/DeliveryMap')
-       }}
-       >
-        <MaterialCommunityIcons name="arrow-right-circle" size={RFValue(25)} color={Colors.primary}/>
-
-       </TouchableOpacity>
-
+        <Link
+          href={{
+            pathname: "/DeliveryMap",
+            params: {
+              orderId: item.orderId,
+              items: JSON.stringify(item.items),
+              createdAt: item.createdAt,
+              status: item.status,
+              deliveryLocation: JSON.stringify(item.deliveryLocation),
+              totalPrice: item.totalPrice,
+            },
+          }}
+        >
+          <View style={styles.iconContainer}>
+            <MaterialCommunityIcons
+              name="arrow-right-circle"
+              size={RFValue(25)}
+              color={Colors.primary}
+            />
+          </View>
+        </Link>
       </View>
     </View>
   );

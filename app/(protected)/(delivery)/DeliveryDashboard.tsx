@@ -1,4 +1,4 @@
-import { ActivityIndicator, Alert, FlatList, RefreshControl, StyleSheet, View } from "react-native";
+import { ActivityIndicator, Alert, FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Colors } from "@/utils/Constants";
 import { useAuthStore } from "@/state/authStore";
@@ -40,12 +40,10 @@ const DeliveryDashboard = () => {
   const fetchData = async () => {
       setData([]);
       setRefreshing(true);
-      setLoading(true);
       
         const data =  await fetchDeliveryPartnerOrders(selectedTab, user?.id, user?.branch);
         setData(data);
         setRefreshing(false);
-        setLoading(false);
       }
 
   useEffect(() => {
@@ -61,6 +59,9 @@ const DeliveryDashboard = () => {
   return (
     <View style={styles.container}>
       <DeliveryHeader name={user?.name} email={user?.email} />
+      <ScrollView>
+        <Text>{JSON.stringify(user)}</Text>
+      </ScrollView>
       <View style={styles.subContainer}>
         <TabBar selectedTab={selectedTab} onTabChange={setSelectedTab} />
         <FlatList 

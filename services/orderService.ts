@@ -54,3 +54,28 @@ export const fetchDeliveryPartnerOrders = async(
         throw error; // Propagate the error for further handling
     }
 }
+
+export const sendLiveOrderUpdates = async(id:string,location:any,status:string) =>{
+    try {
+        const response = await appAxios.patch(`/order/${id}/status`, {
+            deliveryPersonLocation: location,
+            status:status
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error sending live order updates:', error);
+        throw error; // Propagate the error for further handling
+    }
+}
+
+export const confirmOrder = async(id:string,location:any) =>{
+    try {
+        const response = await appAxios.post(`/order/${id}/confirm`, {
+            deliveryPersonLocation: location,
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error confirming order, Try Again:', error);
+        throw error; // Propagate the error for further handling
+    }
+}

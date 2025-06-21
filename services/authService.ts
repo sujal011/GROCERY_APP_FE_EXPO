@@ -7,7 +7,7 @@ import { BASE_URL } from "./config";
 
 export async function customerLogin(phone:string){
     try{
-        const response = await axios.post(`https://grocery-app-be.onrender.com/api/customer/login`,{phone})
+        const response = await axios.post(`${BASE_URL}/customer/login`,{phone})
         
         const {accessToken,refreshToken,customer} = response.data
 
@@ -23,7 +23,7 @@ export async function customerLogin(phone:string){
 
 export async function deliveryPartnerLogin(email:string,password:string){
     try{
-        const response = await axios.post(`https://grocery-app-be.onrender.com/api/delivery/login`,{email,password})
+        const response = await axios.post(`${BASE_URL}/delivery/login`,{email,password})
         
         const {accessToken,refreshToken,deliveryPartner} = response.data
 
