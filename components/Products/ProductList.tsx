@@ -4,7 +4,7 @@ import { Colors } from '@/utils/Constants'
 import ProductItem from './ProductItem'
 import { Iproduct } from '@/app/(protected)/ProductCategories'
 
-const ProductList = ({data}:{data:Iproduct[]}) => {
+const ProductList = ({data,width="76%"}:{data:Iproduct[],width?:string,height?:string}) => {
     const renderItem =({item,index}:any)=>{
 return (
     <ProductItem item={item} index={index} />
@@ -15,8 +15,8 @@ return (
         data={data}
         keyExtractor={item=>item._id} 
         renderItem={renderItem}
-        style={styles.container}
-        contentContainerStyle={styles.content}
+        style={[styles.container,{width:width}]}
+        contentContainerStyle={[styles.content]}
         numColumns={2}
    />
   )
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         height:'100%',
-        width:'76%',
         backgroundColor:Colors.backgroundSecondary
     },
     content:{

@@ -96,7 +96,7 @@ const ProductCategories = () => {
               style={styles.center}
           />
         ) :(
-          <ProductList data={products} />
+          <ProductList data={products}/>
         )
       
       }

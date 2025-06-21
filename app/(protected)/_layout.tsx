@@ -28,6 +28,10 @@ const ProtectedLayout = () => {
         options={{
             headerShown:false
             }}/>
+        <Stack.Screen name='SearchScreen' 
+        options={{
+            headerShown:false
+            }}/>
         <Stack.Screen name='(delivery)' 
         options={{
             headerShown:false
