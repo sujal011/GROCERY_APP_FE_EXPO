@@ -1,17 +1,18 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Colors, Fonts } from '@/utils/Constants';
 import Feather from '@expo/vector-icons/Feather';
 import { RFValue } from 'react-native-responsive-fontsize';
 import RollingBar from 'react-native-rolling-bar'
 import CustomText from '../ui/CustomText';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useRouter } from 'expo-router';
 
-const searchItems = ['Search "sweets"','Search "milk"',"Search for ata,dal,coke",'Search "chips"', 'Search "Pooja thali']
+const searchItems = ['Search "sweets"','Search "milk"',"Search for ata,dal,coke",'Search "chips"', 'Search "Pooja thali"']
 
-const SearchBar = () => {
+const SearchBar = ({ onPress }: { onPress?: () => void }) => {
+    const router = useRouter();
     return (
-        <TouchableOpacity style={styles.container} activeOpacity={0.8}>
+        <TouchableOpacity style={styles.container} activeOpacity={0.8} onPress={onPress ? onPress : () => router.push('/SearchScreen')}>
             <Feather name="search" size={RFValue(20)} color={Colors.text} />
             <RollingBar interval={3000} defaultStyle={false} customStyle={styles.textContainer}>
                {

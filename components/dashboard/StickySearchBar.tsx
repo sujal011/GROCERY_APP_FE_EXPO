@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native'
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated'
 import SearchBar from './SearchBar'
 
-export default function StickySearchBar() {
+export default function StickySearchBar({ onPress }: { onPress?: () => void }) {
     const {scrollY} = useCollapsibleContext()
     const animatedShaow = useAnimatedStyle(()=>{
         const opacity = interpolate(scrollY.value,[0,140],[0,1])
@@ -17,7 +17,7 @@ export default function StickySearchBar() {
 
   return (
     <StickyView style={[backgroundColorChanges,{backgroundColor:'transparent'}]}>
-      <SearchBar />
+      <SearchBar onPress={onPress} />
       <Animated.View style={[styles.shadow,animatedShaow]} />
     </StickyView>
   )
@@ -27,7 +27,5 @@ const styles = StyleSheet.create({
     shadow:{
         height:15,
         width:'100%',
-        borderBottomWidth:1,
-        borderBottomColor:Colors.border,
     }
 })

@@ -18,3 +18,12 @@ export const getProductsByCategories = async (id:string) =>{
         throw error
     }
 }
+
+export const getProductsBySearch = async (name:string) =>{
+    try {
+        const response = await axios.get(`${BASE_URL}/products/search?name=${name}`)
+        return response.data
+    } catch (error) {
+        throw error
+    }
+}

@@ -29,10 +29,12 @@ import StickySearchBar from "@/components/dashboard/StickySearchBar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { withCart } from "@/components/cart/WithCart";
 import withLiveStatus from "@/components/liveTracking/withLiveStatus";
+import { useRouter } from 'expo-router';
 
 const NOTICE_HEIGHT = -(NoticeHeight + 12);
 
 function ProductDashboard() {
+  const router = useRouter();
   const noticePosition = useRef(new RNAnimated.Value(NOTICE_HEIGHT)).current;
 
   const { scrollY, expand } = useCollapsibleContext();
@@ -76,6 +78,9 @@ function ProductDashboard() {
 
   const insets = useSafeAreaInsets()
 
+  const handleSearchBarPress = () => {
+    router.push('/SearchScreen');
+  };
   
   return (
     <NoticeAnimation noticePosition={noticePosition}>
@@ -104,7 +109,7 @@ function ProductDashboard() {
             </CustomText>
           </TouchableOpacity>
         </Animated.View>
-        <CollapsibleContainer style={[styles.panelContainer,{marginTop:insets.top || 20}]}>
+        <CollapsibleContainer style={[styles.panelContainer,{marginTop:insets.top || 20}]}> 
         <CollapsibleHeaderContainer containerStyle={styles.transparent}>
         <AnimatedHeader 
             showNotice={()=>{
@@ -115,7 +120,7 @@ function ProductDashboard() {
                 return ()=> clearTimeout(timeoutId)
             }}
         />
-        <StickySearchBar/>
+        <StickySearchBar onPress={handleSearchBarPress}/>
         </CollapsibleHeaderContainer>
         
         <CollapsibleScrollView nestedScrollEnabled 
