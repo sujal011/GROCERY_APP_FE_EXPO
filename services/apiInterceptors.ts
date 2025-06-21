@@ -2,12 +2,13 @@ import axios from "axios";
 import { Alert } from "react-native";
 import { tokenStorage } from "@/state/storage";
 import { useRouter } from "expo-router";
+import { BASE_URL } from "./config";
 
 export async function refresh_token(){
     const router = useRouter();
     try {
         const refreshToken = tokenStorage.getString('refreshToken')
-        const response = await axios.post(`https://grocery-app-be.onrender.com/api/refresh-token`,{refreshToken})
+        const response = await axios.post(`${BASE_URL}/refresh-token`,{refreshToken})
 
         const {newAccessToken,newRefreshToken} = response.data
 
@@ -27,7 +28,7 @@ export async function refresh_token(){
 }
 
 export const appAxios = axios.create({
-  baseURL: 'https://grocery-app-be.onrender.com/api'
+  baseURL: BASE_URL
 });
 
 appAxios.interceptors.request.use( async config => {

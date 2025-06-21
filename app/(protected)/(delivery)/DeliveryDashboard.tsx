@@ -9,6 +9,7 @@ import * as Location from "expo-location";
 import { fetchDeliveryPartnerOrders } from "@/services/orderService";
 import DeliveryOrderItem from "@/components/delivery/DeliveryOrderItem";
 import CustomText from "@/components/ui/CustomText";
+import withLiveOrder from "@/components/delivery/withLiveOrder";
 
 const DeliveryDashboard = () => {
   const { user, setUser } = useAuthStore();
@@ -40,14 +41,16 @@ const DeliveryDashboard = () => {
   const fetchData = async () => {
       setData([]);
       setRefreshing(true);
-      setLoading(true);
-      
-        const data =  await fetchDeliveryPartnerOrders(selectedTab, user?.id, user?.branch);
-        setData(data);
-        setRefreshing(false);
-        setLoading(false);
-      }
+      try{
 
+        const data =  await fetchDeliveryPartnerOrders(selectedTab, user?._id, user?.branch);
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching delivery partner orders:", error);
+      }finally{
+        setRefreshing(false);
+      }
+    }
   useEffect(() => {
     fetchData();
   }, [selectedTab]);
@@ -61,6 +64,9 @@ const DeliveryDashboard = () => {
   return (
     <View style={styles.container}>
       <DeliveryHeader name={user?.name} email={user?.email} />
+      {/* <ScrollView>
+        <Text>{JSON.stringify(user)}</Text>
+      </ScrollView> */}
       <View style={styles.subContainer}>
         <TabBar selectedTab={selectedTab} onTabChange={setSelectedTab} />
         <FlatList 
@@ -93,7 +99,7 @@ const DeliveryDashboard = () => {
   );
 };
 
-export default DeliveryDashboard;
+export default withLiveOrder(DeliveryDashboard);
 
 const styles = StyleSheet.create({
   container: {
@@ -115,3 +121,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+

@@ -95,8 +95,7 @@ export default function Index() {
   switch (user.role) {
     case 'Customer':
       return <Redirect href="/ProductDashboard" />;
-    case 'Delivery':
-      console.log('Delivery role detected');
+    case 'DeliveryPartner':
       return <Redirect href="/DeliveryDashboard" />;
     default:
       // Unknown role - clear tokens and redirect to login
