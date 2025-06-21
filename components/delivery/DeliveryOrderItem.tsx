@@ -38,7 +38,6 @@ function getStatusColor(status: string) {
 }
 
 const DeliveryOrderItem = ({ item, index }: { item: Order; index: number }) => {
-  const router = useRouter();
   return (
     <View style={styles.container}>
       <View style={styles.flexRowBetween}>

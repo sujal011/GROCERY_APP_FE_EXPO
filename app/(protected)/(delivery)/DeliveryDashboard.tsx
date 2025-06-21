@@ -40,12 +40,16 @@ const DeliveryDashboard = () => {
   const fetchData = async () => {
       setData([]);
       setRefreshing(true);
-      
-        const data =  await fetchDeliveryPartnerOrders(selectedTab, user?.id, user?.branch);
+      try{
+
+        const data =  await fetchDeliveryPartnerOrders(selectedTab, user?._id, user?.branch);
         setData(data);
+      } catch (error) {
+        console.error("Error fetching delivery partner orders:", error);
+      }finally{
         setRefreshing(false);
       }
-
+    }
   useEffect(() => {
     fetchData();
   }, [selectedTab]);
@@ -59,9 +63,9 @@ const DeliveryDashboard = () => {
   return (
     <View style={styles.container}>
       <DeliveryHeader name={user?.name} email={user?.email} />
-      <ScrollView>
+      {/* <ScrollView>
         <Text>{JSON.stringify(user)}</Text>
-      </ScrollView>
+      </ScrollView> */}
       <View style={styles.subContainer}>
         <TabBar selectedTab={selectedTab} onTabChange={setSelectedTab} />
         <FlatList 

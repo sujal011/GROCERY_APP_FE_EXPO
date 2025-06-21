@@ -1,5 +1,7 @@
 export const BASE_URL = process.env.EXPO_PUBLIC_API_URL!;
+// export const BASE_URL = "http://192.168.1.14:80/api";
 export const WEBSOCKET_URl = process.env.EXPO_PUBLIC_WEBSOCKET_URL!;
+// export const WEBSOCKET_URl = "http://192.168.1.14:80";
 export const GOOGLE_MAPS_API_KEY_ANDROID = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY_ANDROID!;
 export const GOOGLE_MAPS_API_KEY_IOS = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY_IOS!;
 
