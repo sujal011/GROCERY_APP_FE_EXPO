@@ -4,7 +4,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Colors, Fonts } from "@/utils/Constants";
 import CustomText from "../ui/CustomText";
 import { formatISOToCustom } from "@/utils/DateUtils";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 export interface CartItem {

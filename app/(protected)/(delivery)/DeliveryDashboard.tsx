@@ -1,4 +1,4 @@
-import { ActivityIndicator, Alert, FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Alert, FlatList, RefreshControl, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Colors } from "@/utils/Constants";
 import { useAuthStore } from "@/state/authStore";
@@ -9,6 +9,7 @@ import * as Location from "expo-location";
 import { fetchDeliveryPartnerOrders } from "@/services/orderService";
 import DeliveryOrderItem from "@/components/delivery/DeliveryOrderItem";
 import CustomText from "@/components/ui/CustomText";
+import withLiveOrder from "@/components/delivery/withLiveOrder";
 
 const DeliveryDashboard = () => {
   const { user, setUser } = useAuthStore();
@@ -98,7 +99,7 @@ const DeliveryDashboard = () => {
   );
 };
 
-export default DeliveryDashboard;
+export default withLiveOrder(DeliveryDashboard);
 
 const styles = StyleSheet.create({
   container: {
@@ -120,3 +121,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
